@@ -1,0 +1,4 @@
+.rounds/*.log
+.rounds/chain.log
+.rounds/coders-state.json
+.rounds/*-final.md

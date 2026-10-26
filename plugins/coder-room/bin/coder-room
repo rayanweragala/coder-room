@@ -1,0 +1,24 @@
+#!/bin/sh
+# Wrapper: runs the real coder-room CLI (never itself).
+self_dir=$(CDPATH= cd -- "$(dirname -- "$0")" 2>/dev/null && pwd -P)
+self="$self_dir/$(basename -- "$0")"
+
+old_ifs=$IFS
+IFS=:
+for d in $PATH; do
+  [ -n "$d" ] || d=.
+  cand="$d/coder-room"
+  [ -f "$cand" ] && [ -x "$cand" ] || continue
+  real_dir=$(CDPATH= cd -- "$d" 2>/dev/null && pwd -P) || continue
+  [ "$real_dir/coder-room" = "$self" ] && continue
+  IFS=$old_ifs
+  exec "$cand" "$@"
+done
+IFS=$old_ifs
+
+if [ -n "$CODER_ROOM_HOME" ] && [ -f "$CODER_ROOM_HOME/bin/coder-room.js" ]; then
+  exec node "$CODER_ROOM_HOME/bin/coder-room.js" "$@"
+fi
+
+echo "coder-room CLI not found. Install it with: npm i -g coder-room (or set CODER_ROOM_HOME to a checkout)." >&2
+exit 127

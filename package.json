@@ -1,0 +1,18 @@
+{
+  "name": "coder-room",
+  "version": "0.2.0",
+  "description": "A live, read-only room for your coder rounds, plus a CLI to run them with separate coder processes",
+  "author": "Rayan",
+  "keywords": ["claude-code", "codex", "orchestration", "coder", "rounds", "handoff", "dashboard"],
+  "repository": { "type": "git", "url": "git+https://github.com/rayanweragala/coder-room.git" },
+  "homepage": "https://github.com/rayanweragala/coder-room#readme",
+  "bugs": { "url": "https://github.com/rayanweragala/coder-room/issues" },
+  "type": "module",
+  "bin": { "coder-room": "bin/coder-room.js" },
+  "engines": { "node": ">=20" },
+  "files": ["bin", "src", "public", "demo", "server.js", "README.md", "docs/why.md"],
+  "scripts": {
+    "test": "node --test --test-concurrency=1",
+    "demo": "node bin/coder-room.js serve --demo"
+  }
+}

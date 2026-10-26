@@ -1,0 +1,5 @@
+.rounds/
+.codex-runs/
+node_modules/
+bench/results/
+!bench/fixture/.rounds/

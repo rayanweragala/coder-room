@@ -1,0 +1,8 @@
+{
+  "name": "coder-room",
+  "version": "0.2.0",
+  "description": "Orchestrate coding rounds: your Claude plans, reviews and keeps the handoff; separate coder processes do the coding.",
+  "author": { "name": "Rayan" },
+  "homepage": "https://github.com/rayanweragala/coder-room",
+  "keywords": ["orchestration", "coder", "rounds", "handoff", "workflow"]
+}

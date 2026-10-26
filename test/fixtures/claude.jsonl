@@ -1,0 +1,9 @@
+{"type":"system","subtype":"init","cwd":"/work/demo"}
+{"type":"assistant","message":{"content":[{"type":"text","text":"Reading the spec in /work/demo/spec.md"}]}}
+{"type":"assistant","message":{"content":[{"type":"thinking","thinking":"Plan the change carefully."}]}}
+{"type":"assistant","message":{"content":[{"type":"tool_use","name":"Edit","input":{"file_path":"/work/demo/src/a.js","old_string":"x","new_string":"y"}}]}}
+{"type":"assistant","message":{"content":[{"type":"tool_use","name":"Bash","input":{"command":"cd /work/demo && npm test"}}]}}
+{"type":"assistant","message":{"content":[{"type":"tool_use","name":"Grep","input":{"pattern":"TODO"}}]}}
+{"type":"user","message":{"content":[{"type":"tool_result","content":"ok"}]}}
+{not valid json
+{"type":"result","result":"All done."}

@@ -1,0 +1,12 @@
+{
+  "name": "coder-room",
+  "description": "Orchestrate coding rounds with separate coder processes and a live local room.",
+  "owner": { "name": "Rayan" },
+  "plugins": [
+    {
+      "name": "coder-room",
+      "source": "./plugins/coder-room",
+      "description": "Orchestrate coding rounds: your Claude plans, reviews and keeps the handoff; separate coder processes do the coding."
+    }
+  ]
+}

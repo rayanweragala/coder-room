@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>coder room</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="lobby">
+  <div class="bg"></div>
+  <header class="bar">
+    <div class="brand"><span class="rec"></span>coder room</div>
+    <a class="toggle lobbylink" href="#/" title="Lobby">Lobby</a>
+    <select class="switcher" id="switcher" aria-label="Project room"></select>
+    <div class="working" id="working">0 agents working · 0 rounds done today</div>
+    <button class="toggle handsbtn" id="handsBtn" type="button" hidden>✋ 0</button>
+    <button class="toggle" id="historyBtn" type="button" aria-pressed="false" title="Round history (H)">History <kbd>H</kbd></button>
+    <button class="toggle" id="chatToggle" type="button" aria-pressed="true">Chat</button>
+    <button class="toggle fsbtn" type="button" title="Browser full screen (F)" aria-label="Browser full screen">⛶</button>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+  <div class="banner" id="banner" hidden>reconnecting…</div>
+  <div class="fullbar" id="fullbar" hidden>
+    <span class="replaynav" id="replayNav" hidden>
+      <button class="toggle" id="prevRound" type="button" title="Previous (older) round  [">◀ prev round</button>
+      <button class="toggle" id="nextRound" type="button" title="Next (newer) round  ]">next round ▶</button>
+    </span>
+    <button class="toggle" id="detailsBtn" type="button" aria-pressed="false" title="Details drawer (D)">ⓘ Details <kbd>D</kbd></button>
+    <span id="followState">Following</span>
+    <button class="toggle" id="pinBtn" type="button" title="Pin / follow (P)">📌 Pin</button>
+    <button class="toggle" id="chatOver" type="button" aria-pressed="false" title="Chat overlay (C)">Chat</button>
+    <button class="toggle fsbtn" type="button" title="Browser full screen (F)" aria-label="Browser full screen">⛶</button>
+    <a class="toggle" href="#/" title="Lobby" id="fullLobby">Lobby</a>
+    <button class="toggle" id="exitBtn" type="button" title="Back to the room (Esc)" aria-label="Back to the room">✕</button>
+  </div>
+  <div class="toast" id="toast" hidden role="status"><span id="toastText"></span><button class="toggle" id="stayBtn" type="button">Stay</button></div>
+  <div class="layout">
+    <div class="stage">
+      <section class="lobbyview" id="lobby" aria-label="Lobby"></section>
+      <main class="grid" id="grid"></main>
+      <p class="empty" id="empty" hidden>No coder rounds in this room in the last 24 hours.</p>
+    </div>
+    <aside class="chat" aria-label="Chat with the orchestrator">
+      <h2 id="chatTitle">Chat</h2>
+      <div class="chatlist" id="chatlist" role="log" aria-live="polite"></div>
+    </aside>
+    <aside class="histpanel" id="history" aria-label="Round history"></aside>
+  </div>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

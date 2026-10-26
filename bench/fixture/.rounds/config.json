@@ -1,0 +1,12 @@
+{
+  "coders": [
+    { "name": "claude-main", "kind": "claude", "model": "sonnet", "enabled": true, "configDir": null, "tools": ".rounds/coder-tools.txt", "lean": true }
+  ],
+  "order": ["claude-main"],
+  "requireCleanTree": false,
+  "prompt": null,
+  "limitPatterns": {
+    "claude": ["hit your session limit", "usage limit", "hit your limit"],
+    "codex": ["usage limit", "rate limit", "hit your limit"]
+  }
+}

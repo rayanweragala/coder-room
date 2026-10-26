@@ -1,0 +1,25 @@
+OpenAI Codex (synthetic header)
+user
+please do the thing
+thinking
+Considering the layout of /work/demo
+codex
+I will start with the parser.
+Then the tests.
+exec
+/bin/bash -lc 'cd /work/demo && node --test' in /work/demo
+ succeeded in 12ms:
+all good output
+exec
+/bin/bash -lc 'ls /work/demo/src' in /work/demo
+ exited 1 in 3ms:
+ls: cannot access
+apply patch
+patch: completed
+/work/demo/src/a.js
+/work/demo/src/b.js
+diff --git a/x b/x
++ignored line
+ERROR: something broke
+tokens used
+1234
