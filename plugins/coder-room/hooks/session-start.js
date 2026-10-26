@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const DIRS = ['.rounds', '.codex-runs'];
 const TAIL_BYTES = 64 * 1024;
-const RE_EVENT = /^coder (\S+) (started|finished|LIMIT|REFUSED)\b/;
+const RE_EVENT = /^coder (\S+)(?: .*?)? (started|finished|LIMIT|REFUSED|STOPPED)\b/;
 
 function exists(file) {
   try {

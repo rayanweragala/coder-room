@@ -8,7 +8,7 @@ import { modelShown } from './model.js';
 
 const STATUS_CLASS = {
   thinking: 'st-thinking', editing: 'st-editing', 'running a gate': 'st-gate', 'running a command': 'st-command',
-  done: 'st-done', 'rate-limited': 'st-limit', refused: 'st-refused', 'waiting for you': 'st-waiting', watching: 'st-watching',
+  done: 'st-done', 'rate-limited': 'st-limit', refused: 'st-refused', stopped: 'st-stopped', 'waiting for you': 'st-waiting', watching: 'st-watching',
 };
 const TALK_MS = 2000;
 const RECENT = 3;

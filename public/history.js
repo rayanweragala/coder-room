@@ -1,7 +1,7 @@
 import { fmtTokens, fmtCost } from './tokens.js';
 import { elapsedText } from './util.js';
 
-export const OUTCOMES = [['all', 'All'], ['done', '✓ done'], ['failed', '✗ failed'], ['limit', 'limit'], ['refused', 'refused'], ['running', 'running']];
+export const OUTCOMES = [['all', 'All'], ['done', '✓ done'], ['failed', '✗ failed'], ['limit', 'limit'], ['refused', 'refused'], ['stopped', 'stopped'], ['running', 'running']];
 
 /** Drops a leading round id and its separator (—, -, :) from a spec title: "q16 — X" becomes "X". */
 export function stripRoundId(title, round) {
@@ -23,6 +23,7 @@ export function outcomeChip(r) {
     case 'failed': return { cls: 'fail', text: r.rc == null ? '✗' : `✗ rc ${r.rc}` };
     case 'limit': return { cls: 'limit', text: 'limit' };
     case 'refused': return { cls: 'refused', text: 'refused' };
+    case 'stopped': return { cls: 'stopped', text: 'stopped' };
     default: return { cls: 'run', text: 'running' };
   }
 }

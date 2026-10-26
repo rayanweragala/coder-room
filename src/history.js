@@ -41,7 +41,7 @@ export async function readChain(runsDir) {
 
 /**
  * Groups dated chain events (file order) into one entry per round. A `started` opens an attempt; finished / limit /
- * refused close the open one (or make a start-less one). An attempt still open when another starts is `interrupted`.
+ * refused / stopped close the open one (or make a start-less one). An attempt still open when another starts is `interrupted`.
  * @returns {Map<string, object[]>} round → attempts in file order
  */
 export function groupAttempts(events) {
@@ -69,6 +69,7 @@ export function groupAttempts(events) {
     open.delete(key);
     if (ev.type === 'finished') Object.assign(a, { outcome: ev.rc === 0 || ev.rc === null ? 'done' : 'failed', rc: ev.rc });
     else if (ev.type === 'limit') a.outcome = 'limit';
+    else if (ev.type === 'stopped') Object.assign(a, { outcome: 'stopped', reason: ev.reason || null });
     else if (ev.type === 'refused') Object.assign(a, { outcome: 'refused', reason: ev.reason || null });
   }
   return rounds;
@@ -178,7 +179,7 @@ export async function roundDetails(project, round, now = Date.now(), attempt = n
   const who = at?.who ?? row.who;
   const tokens = latest ? row.tokens : await logUsage(file ?? '');
   const model = latest ? row.model : bestModel(await logModel(file ?? ''), who?.model);
-  const state = { done: 'done', failed: 'done', limit: 'rate-limited', refused: 'refused' }[shown.outcome] ?? 'running';
+  const state = { done: 'done', failed: 'done', limit: 'rate-limited', refused: 'refused', stopped: 'stopped' }[shown.outcome] ?? 'running';
   const rec = {
     slot: who?.id ?? 'coder', id: `replay:${round}`, name: who?.name ?? 'Coder', color: who?.color ?? '#94a3b8',
     char: who?.kind ?? null, look: who?.look ?? null, project: project.name, round, role: shown.role, rc: shown.rc,

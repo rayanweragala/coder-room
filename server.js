@@ -5,12 +5,12 @@ import { Room } from './src/room.js';
 import { createHttpServer } from './src/http.js';
 
 export function parseArgs(argv) {
-  const opts = { port: 4317, userName: 'You', roots: [], claudeProjects: path.join(os.homedir(), '.claude', 'projects') };
+  const opts = { port: 4317, userName: 'You', roots: [], claudeProjects: null };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--port') opts.port = Number(argv[++i]);
     else if (argv[i] === '--root') opts.roots.push(path.resolve(argv[++i]));
     else if (argv[i] === '--user-name') opts.userName = argv[++i];
-    else if (argv[i] === '--claude-projects') opts.claudeProjects = path.resolve(argv[++i]);
+    else if (argv[i] === '--claude-projects') (opts.claudeProjects ??= []).push(path.resolve(argv[++i]));
   }
   return opts;
 }

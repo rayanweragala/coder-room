@@ -50,6 +50,8 @@ export class ChainModel {
       Object.assign(rec, { state: 'done', rc: ev.rc, endedAt: ev.at });
     } else if (ev.type === 'limit') {
       Object.assign(rec, { state: 'rate-limited', endedAt: ev.at });
+    } else if (ev.type === 'stopped') {
+      Object.assign(rec, { state: 'stopped', endedAt: ev.at, reason: ev.reason || null });
     } else if (ev.type === 'refused') {
       Object.assign(rec, { state: 'refused', endedAt: ev.at, reason: ev.reason || null });
     }
@@ -73,6 +75,7 @@ export class ChainModel {
 export function coderStatus(rec, activity, grewAt, now) {
   if (rec.state === 'rate-limited') return { status: 'rate-limited', quiet: null };
   if (rec.state === 'refused') return { status: 'refused', quiet: null };
+  if (rec.state === 'stopped') return { status: 'stopped', quiet: null };
   if (rec.state === 'done') return { status: 'done', quiet: null };
   const last = Math.max(grewAt || 0, rec.startedAt);
   const idle = now - last;

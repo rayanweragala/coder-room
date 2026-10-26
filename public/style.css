@@ -237,7 +237,8 @@ body:not(.lobby) .lobbyview { display: none; }
 .o-think, .o-edit, .o-done, .o-off, .o-gate, .o-cmd, .o-ok, .o-fail, .o-limit, .o-refused, .o-wait, .o-watch { display: none; }
 .st-done .o-done, .st-limit .o-off, .st-thinking .o-think, .st-editing .o-edit, .st-gate .o-gate, .st-command .o-cmd, .st-done .o-ok,
 .st-limit .o-limit, .st-refused .o-refused, .st-waiting .o-wait, .st-fail .o-fail, .st-watching .o-watch { display: inline; }
-.st-fail .o-ok, .st-limit .awake { display: none; }
+.st-fail .o-ok, .st-limit .awake, .st-stopped .awake { display: none; }
+.st-stopped .o-off { display: inline; }
 .pupil { transform: translateX(2px); }
 .st-waiting .pupil { transform: none; }
 .agent, .head, .hands, .gear, .bar-fill, .code, .cursor, .zs, .dot, .burst circle, .wave, .check, .steam {

@@ -7,7 +7,7 @@ export const STATUS_HELP = `usage: coder-room status [--dir <project>]
   Shows each configured coder (enabled, on PATH, limited until), the last 10 coder events and running rounds.
 `;
 
-const RE_EVENT = /^coder (\S+) (started|finished|LIMIT|REFUSED)\b/;
+const RE_EVENT = /^coder (\S+)(?: .*?)? (started|finished|LIMIT|REFUSED|STOPPED)\b/;
 
 export async function chainEvents(project) {
   try {

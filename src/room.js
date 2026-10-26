@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { Tail } from './tail.js';
 import { LogFollower, tailBytesFor } from './follow.js';
-import { discoverProjects, recentTranscripts } from './projects.js';
+import { defaultClaudeProjects, discoverProjects, recentTranscripts } from './projects.js';
 import { orchestratorFiles } from './orchestra.js';
 import { HandoffGoals } from './goal.js';
 import { parseChainLines, logName } from './parse-chain.js';
@@ -22,7 +22,10 @@ const HOLD_TICKS = 2;
 export class Room {
   constructor({ roots, scanRoot, claudeProjects, home = os.homedir(), clock = Date.now, userName }) {
     this.userName = userName;
-    Object.assign(this, { roots, scanRoot, claudeProjects, home, clock });
+    Object.assign(this, { roots, scanRoot, home, clock });
+    this.claudeProjectsOpt = claudeProjects == null ? null : [claudeProjects].flat();
+    this.claudeProjects = this.claudeProjectsOpt ?? [];
+    this.printMode = new Map();
     this.recentRecs = [];
     this.model = new ChainModel();
     this.projects = [];
@@ -95,6 +98,7 @@ export class Room {
     if (now - this.lastScan >= RESCAN_MS) {
       this.lastScan = now;
       this.projects = await discoverProjects({ roots: this.roots, scanRoot: this.scanRoot });
+      this.claudeProjects = this.claudeProjectsOpt ?? await defaultClaudeProjects(this.home);
       this.#dropGoneProjects();
     }
     for (const p of this.projects) await this.#pollChain(p);
@@ -213,7 +217,7 @@ export class Room {
 
   /** One orchestrator per project: the newest transcript assigned to it (see orchestra.js). */
   async #pickTranscripts(now) {
-    const found = await recentTranscripts(this.projects, this.claudeProjects, this.home, now);
+    const found = await recentTranscripts(this.projects, this.claudeProjects, this.home, now, undefined, this.printMode);
     const best = await orchestratorFiles(found, this.projects, this.assigned, now, this.home);
     const next = new Map();
     for (const p of this.projects) {

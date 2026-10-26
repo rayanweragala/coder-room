@@ -28,7 +28,7 @@ export function dayTimeText(ms, now = Date.now()) {
   return `${MONTHS[d.getMonth()]} ${d.getDate()} ${timeText(ms)}`;
 }
 
-export const ENDED = ['done', 'refused', 'rate-limited'];
+export const ENDED = ['done', 'refused', 'rate-limited', 'stopped'];
 export const WORKING = ['editing', 'running a gate', 'running a command', 'thinking'];
 export const GATE_MARK = { ok: '✓', fail: '✗', running: '…' };
 

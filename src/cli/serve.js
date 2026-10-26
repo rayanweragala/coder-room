@@ -6,9 +6,11 @@ import { startAppender } from '../../demo/appender.js';
 import { makeDemo } from '../../demo/make-demo.js';
 import { parseFlags } from './common.js';
 
-export const SERVE_HELP = `usage: coder-room serve [--port 4317] [--root <dir> ...] [--claude-projects <dir>] [--user-name <name>] [--open]
+export const SERVE_HELP = `usage: coder-room serve [--port 4317] [--root <dir> ...] [--claude-projects <dir> ...] [--user-name <name>] [--open]
        coder-room serve --demo [--fast] [--out <dir>] [--port 4317]
   Starts the read-only room on 127.0.0.1. --open prints the URL (no browser is launched).
+  --claude-projects  orchestrator transcript folder, repeatable. Default: ~/.claude/projects plus the projects
+               folder of every ~/.claude* directory. Giving it replaces the default list.
   --user-name  name shown for your chat messages (default "You").
   --demo       builds a synthetic workspace (two projects, coder logs, orchestrator transcripts), keeps writing
                new lines into it for about 10 minutes, and shows the room on it. Nothing real is read or written.
@@ -21,7 +23,7 @@ const isOwnTemp = (dir) => path.dirname(dir) === fs.realpathSync(os.tmpdir()) &&
 
 export async function serve(argv, io = { out: console.log }) {
   const f = parseFlags(argv, {
-    port: 'value', root: 'list', 'claude-projects': 'value', 'user-name': 'value', out: 'value', open: 'bool', demo: 'bool', fast: 'bool',
+    port: 'value', root: 'list', 'claude-projects': 'list', 'user-name': 'value', out: 'value', open: 'bool', demo: 'bool', fast: 'bool',
   });
   const args = [];
   if (f.port) args.push('--port', f.port);
@@ -36,7 +38,7 @@ export async function serve(argv, io = { out: console.log }) {
     io.out(`demo workspace in ${demo.dir}`);
   } else {
     for (const r of f.root ?? []) args.push('--root', path.resolve(r));
-    if (f['claude-projects']) args.push('--claude-projects', f['claude-projects']);
+    for (const c of f['claude-projects'] ?? []) args.push('--claude-projects', path.resolve(c));
   }
   const srv = await startServer(parseArgs(args));
   const url = `http://127.0.0.1:${srv.port}`;

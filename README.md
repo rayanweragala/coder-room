@@ -95,7 +95,7 @@ To try the room without any agents, run `coder-room serve --demo`. It builds a s
 |---|---|
 | `coder-room init` | `--yes` adds `.rounds/` to `.gitignore` without asking, `--dir <project>` |
 | `coder-room run <round>` | `--coder <name>`, `--no-fallback`, `--extra "<text>"`, `--detach` |
-| `coder-room serve` | `--port 4317`, `--root <dir>` (repeatable), `--claude-projects <dir>`, `--user-name <name>`, `--open`, `--demo`, `--out <dir>` |
+| `coder-room serve` | `--port 4317`, `--root <dir>` (repeatable), `--claude-projects <dir>` (repeatable; default `~/.claude/projects` plus every `~/.claude*/projects`), `--user-name <name>`, `--open`, `--demo`, `--out <dir>` |
 | `coder-room status` | `--dir <project>` |
 | `coder-room tokens` | `--round <r>`, `--json`, `--dir <project>` |
 

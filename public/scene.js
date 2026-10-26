@@ -30,7 +30,7 @@ const MONITOR = `
       <g class="only o-refused"><rect x="10" y="14" width="72" height="28" rx="4" fill="#dc2626"/>
         <text x="46" y="33" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="sans-serif">blocked</text></g>
       <g class="only o-done"><text class="donetext" x="46" y="34" text-anchor="middle" font-size="13" fill="#64748b" font-family="monospace"></text></g>
-      <g class="only o-off"><rect width="92" height="58" fill="#05070d"/><text x="46" y="52" text-anchor="middle" font-size="7" fill="#334155" font-family="monospace">limit</text></g>
+      <g class="only o-off"><rect width="92" height="58" fill="#05070d"/><text x="46" y="52" text-anchor="middle" font-size="7" fill="#334155" font-family="monospace">off</text></g>
       <g class="only o-think"><text x="6" y="30" font-size="9" fill="#94a3b8" font-family="monospace">thinking…</text></g>
       <g class="only o-watch"><text class="watchtitle" x="4" y="22" font-size="8" font-weight="700" fill="#93c5fd" font-family="monospace"></text>
         <text class="watchcap" x="4" y="38" font-size="7" fill="#93c5fd" font-family="monospace"></text></g>
