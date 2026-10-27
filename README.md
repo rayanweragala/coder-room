@@ -2,9 +2,7 @@
 
 Run coding rounds with a separate coder process while your Claude Code session plans and reviews, and watch the whole thing in a live local room.
 
-![coder-room demo: lobby, room, full screen with a gate running and the details drawer, history, replay](docs/img/demo.gif)
-
-The GIF plays at double speed. [Watch it at normal speed (MP4)](docs/img/demo.mp4).
+https://github.com/user-attachments/assets/a5424e22-a4a2-48e2-83db-c20e8191648f
 
 ## What it does
 
